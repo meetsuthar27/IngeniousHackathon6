@@ -56,6 +56,10 @@ const Chatbot: React.FC = () => {
 
   return (
     <div className="h-full w-full flex flex-col text-gray-200">
+      <div className="pb-2 text-xl w-auto font-semibold text-zinc-400">
+        ChatBot
+      </div>
+      <div className="h-[1px] align-center bg-linear-to-r mb-4 from-neutral-700/70 to-zinc-900"></div>
       {/* Chat Messages */}
       <div className="flex flex-col-reverse overflow-hidden flex-grow px-4 py-2">
         {chatHistory

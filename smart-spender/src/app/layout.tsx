@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-// import { Navigation } from "./components/navigation";
-
+import Navbar from "./components/Navbar";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -12,12 +11,10 @@ export default function RootLayout({
       <body>
         <header>
           {/* <p>Welcome to NextJS</p> */}
-          {/* <Navigation /> */}
+          <Navbar />
         </header>
         {children}
-        <footer>
-          <p>Bye goodbye!</p>
-        </footer>
+        <footer>{/* <p>Bye goodbye!</p> */}</footer>
       </body>
     </html>
   );
