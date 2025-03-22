@@ -28,8 +28,11 @@ export default function HeroSection() {
 
   return (
     <div className="bg-black font-[Manrope]">
-      <div className="absolute right-0 bottom-6 flex justify-center items-center">
+      <div className="absolute left-0 bottom-6 flex justify-center items-center">
         <div className="bg-[var(--acc)]  blur-[10rem] opacity-40 w-[1000px] h-[500px] rounded-full"></div>
+      </div>
+      <div className="absolute right-0 top-0 flex justify-center items-center">
+        <div className="bg-[var(--acc)] blur-[10rem] opacity-40 w-[1000px] h-[200px] rounded-full"></div>
       </div>
       <AnimatedContent
         distance={100}
@@ -69,7 +72,7 @@ export default function HeroSection() {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mt-4">
             <Link href="/signup">
-              <div className="bg-blue-600 hover:bg-blue-500 px-6 py-3 text-lg font-semibold">
+              <div className="bg-zinc-950 border-[1px] rounded-xl border-gray- hover:bg-blue-500 px-6 py-3 text-lg font-semibold">
                 Get Started
               </div>
             </Link>
@@ -91,7 +94,7 @@ export default function HeroSection() {
           // animate={{ opacity: 1, x: 0 }}
           // transition={{ duration: 1 }}
         >
-          <div className="w-full right-0 max-w-2/4 p-6 bg-gray-800 rounded-2xl shadow-xl">
+          <div className="w-full right-0 max-w-2/4 p-6 bg-gradient-to-r from-zinc-900 via-black to-zinc-900 rounded-2xl shadow-xl">
             <h3 className="text-xl font-semibold text-white">
               Market Overview
             </h3>
