@@ -32,8 +32,8 @@ export default function HeroSection() {
         <div className="bg-[var(--acc)]  blur-[10rem] opacity-40 w-[1000px] h-[500px] rounded-full"></div>
       </div>
       <AnimatedContent
-        distance={450}
-        direction="vertical"
+        distance={100}
+        direction="horizontal"
         reverse={false}
         config={{ tension: 80, friction: 20 }}
         initialOpacity={0.2}
@@ -82,25 +82,16 @@ export default function HeroSection() {
               </div>
             </Link>
           </div>
-
-          {/* Live Stock Ticker */}
-          <div className="mt-6 flex items-center space-x-3 text-gray-300 text-sm">
-            {/* <FaChartLine className="text-green-400" /> */}
-            <span>
-              {stocks[index].symbol}: ${stocks[index].price} (
-              {stocks[index].change})
-            </span>
-          </div>
         </div>
 
         {/* Right Section - Animated Mockup */}
         <div
-          className="mt-12 md:mt-0 flex justify-center w-full md:w-1/2"
+          className="flex justify-center w-full md:w-1/2"
           // initial={{ opacity: 0, x: 20 }}
           // animate={{ opacity: 1, x: 0 }}
           // transition={{ duration: 1 }}
         >
-          <div className="w-full max-w-md p-6 bg-gray-800 rounded-2xl shadow-xl">
+          <div className="w-full right-0 max-w-2/4 p-6 bg-gray-800 rounded-2xl shadow-xl">
             <h3 className="text-xl font-semibold text-white">
               Market Overview
             </h3>
