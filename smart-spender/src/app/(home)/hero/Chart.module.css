@@ -1,0 +1,263 @@
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(45deg, #24262C, #000000);
+    border: solid 2px #2D3137; 
+    border-radius: 15px;
+    width: 96%;
+    height: 96%;
+  }
+  
+  .ChartCentre{
+    width: 95%;
+  }
+  
+  .stockTitle {
+    display: flex;
+    margin-top: 1.5rem;
+    font-size: larger;
+    font-weight: 600;
+    width: 100%;
+  }
+  
+  .stockDetails {
+    width: 100%;
+    display: flex;
+    height: 49px;
+    gap: 0.5em;
+    align-items: baseline;
+  }
+  
+  .stockName{
+    margin-bottom: .5rem;
+    font-family: GT America,Helvetica Neue,Helvetica,Arial,sans-serif;
+    letter-spacing: .8px;
+  }
+  
+  .stockPrice {
+    font-weight: 900;
+    font-size: 36px;
+    font-family: GT-America,Helvetica Neue,Helvetica,Arial,sans-serif;
+    line-height: 1.25;
+    margin-right: .2rem;
+    letter-spacing: 1.5px;
+  }
+  
+  .stockPriceChange, .stockPercentageChange {
+    font-size: 20px;
+    margin-left: .5rem;
+    font-weight: 700;
+    font-family: GT-America,Helvetica Neue,Helvetica,Arial,sans-serif;
+    letter-spacing: 1px;
+  }
+  
+  .highlighted {
+    background-color: red; 
+    transition: background-color 0.5s; 
+  }
+  
+  .priceChanged {
+    background-color: #374d5d; 
+    transition: background-color .5s; 
+  }
+  
+  .positive {
+    color: #1ECB4F; 
+    font-size: 20px;
+    font-weight: 700;
+    font-family: GT-America,Helvetica Neue,Helvetica,Arial,sans-serif;
+    letter-spacing: 1px;
+  }
+  
+  .stockHistoryPositive{
+    color: #1ECB4F; 
+    /* color: rgb(24, 134, 123); */
+    font-weight: 700;
+    font-family: GT-America,Helvetica Neue,Helvetica,Arial,sans-serif;
+    letter-spacing: 1px;
+    margin-left: .13rem;
+  }
+  
+  .stockHistoryNegative {
+    color: #F46D22;
+    font-weight: 700;
+    font-family: GT-America,Helvetica Neue,Helvetica,Arial,sans-serif;
+    letter-spacing: 1px;
+    margin-left: .13rem;
+  }
+  
+  .negative {
+    color: #F46D22;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: GT-America,Helvetica Neue,Helvetica,Arial,sans-serif;
+    letter-spacing: 1.5px;
+  }
+  
+  .loading{
+    margin-top: 1rem;
+  }
+  
+  .chartt{
+    height: 390px;
+    z-index: 0;
+    animation: blink 1s ease infinite alternate;
+  }
+  
+  @keyframes blink {
+    0% {
+      opacity: 0.5;
+    }
+  }
+  
+  .switcher {
+      display: flex;
+      align-items: center;
+      height: 30px;
+      margin-top: 8px;
+      color: #2196F3;
+  }
+  
+  .chart-container {
+      width: 100%;
+      height: 100%;
+    }
+  
+  .switcher-item {
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      padding: 6px 8px;
+      font-size: 14px;
+      color: #262b3e;
+      background-color: transparent;
+      margin-right: 8px;
+      border: none;
+      border-radius: 4px;
+      outline: none;
+  }
+  
+  .switcher-item:hover {
+      background-color: #f2f3f5;
+  }
+  
+  .switcher-active-item {
+      text-decoration: none;
+      cursor: default;
+      color: #262b3e;
+  }
+  
+  .switcher-active-item,
+  .switcher-active-item:hover {
+      background-color: #e1eff9;
+  }
+  
+  .tickerName{
+    text-transform: uppercase;
+  }
+  
+  
+  @media (max-width: 1024px) {
+    .container{
+      border-radius: 13px;
+    }
+    .stockTitle{
+      font-size: large;
+    }
+    .stockPrice{
+      font-size: 30px;
+    }
+    .stockPriceChange, .stockPercentageChange {
+      font-size: 18.3px;
+    }
+  }
+  .stockHistoryContainer{
+    display: flex;
+    width: 100%;
+  }
+  .stockHistory{
+    display: flex;
+    width: 100%;
+  }
+  
+  .stockHistoryDetail{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2rem;
+    width: 100%;
+  }
+  
+  .stockHistoryDetails{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    margin-top: 2.2rem;
+    width: 100%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .stockHistoryDetails:hover{
+    background-color: #2D3137;
+    border-radius: 12px;
+  }
+  
+  .stockHistoryDetailTitle{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-size: 15px;
+    font-family: GT-America,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-weight: 600;
+  }
+  
+  .stockHistoryDetailValue{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: .5rem ;
+    font-size: 14px;
+    font-family: GT-America,Helvetica Neue,Helvetica,Arial,sans-serif;
+    margin-right: .5rem;
+  }
+  
+  .selectedButton{
+    background-color: #2D3137;
+    border-radius: 12px;
+  }
+
+  .stockHistoryDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .stockHistoryDetailTitle {
+    font-weight: bold;
+  }
+
+  .stockHistoryDetailValue {
+    margin-top: 5px;
+    font-size: 0.9rem;
+    color: green;
+  }
+
+
+  @media (max-width: 768px) {
+    .stockHistoryDetail {
+      display: flex;
+      gap: 2rem;
+      overflow-x: auto;
+      white-space: nowrap;
+      padding-bottom: 5px;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
