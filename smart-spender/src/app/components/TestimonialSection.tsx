@@ -19,7 +19,7 @@ const testimonials: Testimonial[] = [
     role: 'Senior Developer',
     company: 'TechCorp',
     avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
-    quote: 'The AI debugging feature is simply revolutionary. It helped me identify patterns in my code that I never noticed before, making me a much more efficient developer.',
+    quote: 'As a first-time investor, I always felt overwhelmed by the amount of information out there. This dashboard changed everything! The AI-based financial advice tailored to my goals helped me make smarter investment decisions. Plus, the tax calculation feature ensures I understand my obligations, which is such a relief!.',
     rating: 5
   },
   {
@@ -28,7 +28,7 @@ const testimonials: Testimonial[] = [
     role: 'Full Stack Engineer',
     company: 'StartupX',
     avatar: 'https://randomuser.me/api/portraits/women/44.jpg',
-    quote: "I've tried many coding platforms, but this one stands out with its personalized challenges. It's like having a mentor who knows exactly what I need to learn next.",
+    quote: "The interactive visualizations are a game-changer! I can easily track my investments, see how my portfolio is performing, and even visualize potential future outcomes. The seamless integration with real-time market data means I’m always up-to-date on my investments without having to search multiple sources",
     rating: 5
   },
   {
@@ -37,7 +37,7 @@ const testimonials: Testimonial[] = [
     role: 'CS Student',
     company: 'University of Tech',
     avatar: 'https://randomuser.me/api/portraits/men/67.jpg',
-    quote: "As a student, the progressive difficulty curve helped me build confidence. The leaderboard keeps me motivated to practice daily—I've improved more in 3 months than in my entire year of studies.",
+    quote: "I love how the dashboard is personalized to my financial goals. The secure login system makes it easy for me to access my account, and I can track everything in one place. The AI-powered advisory has helped me make decisions that align with my risk tolerance and financial aspirations.",
     rating: 4
   },
   {
@@ -46,7 +46,7 @@ const testimonials: Testimonial[] = [
     role: 'Engineering Lead',
     company: 'GlobalSoft',
     avatar: 'https://randomuser.me/api/portraits/women/63.jpg',
-    quote: "We've implemented this platform across our entire engineering team, and the results are remarkable. Our code quality has improved significantly, and onboarding new developers is much faster.",
+    quote: "This dashboard has made managing my investment portfolio a breeze. The integration with real-time financial data keeps me informed, while the personalized tax advice helps me stay compliant with the latest regulations. It feels like a one-stop-shop for all my investment needs!",
     rating: 5
   }
 ];

@@ -7,6 +7,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { FaSignInAlt } from "react-icons/fa";
 import { PiSignIn } from "react-icons/pi";
 import TestimonialSection from '../app/components/TestimonialSection';
+import Footer from '../app/components/Footer';
 import { useRef, useState, useEffect } from "react";
 import StockList from "./StockList";
 
@@ -146,7 +147,80 @@ export default function HeroSection() {
   };
 
   const session = useSession();
-
+  const gainerJson = [
+    {
+      "symbol": "RELIANCE",
+      "name": "Reliance Industries Limited",
+      "change": 145.75,
+      "price": 2775.50,
+      "changesPercentage": 5.54
+    },
+    {
+      "symbol": "TCS",
+      "name": "Tata Consultancy Services",
+      "change": 98.30,
+      "price": 3875.65,
+      "changesPercentage": 2.59
+    },
+    {
+      "symbol": "INFY",
+      "name": "Infosys Limited",
+      "change": 54.12,
+      "price": 1748.35,
+      "changesPercentage": 3.19
+    },
+    {
+      "symbol": "HDFC",
+      "name": "HDFC Bank Limited",
+      "change": 21.45,
+      "price": 1521.60,
+      "changesPercentage": 1.43
+    },
+    {
+      "symbol": "KOTAKBANK",
+      "name": "Kotak Mahindra Bank Limited",
+      "change": 28.50,
+      "price": 1812.85,
+      "changesPercentage": 1.60
+    }
+  ]
+  const loserJson = [
+    {
+      "symbol": "WIPRO",
+      "name": "Wipro Limited",
+      "change": -12.75,
+      "price": 650.50,
+      "changesPercentage": -1.92
+    },
+    {
+      "symbol": "HCLTECH",
+      "name": "HCL Technologies Limited",
+      "change": -9.30,
+      "price": 1010.25,
+      "changesPercentage": -0.91
+    },
+    {
+      "symbol": "AXISBANK",
+      "name": "Axis Bank Limited",
+      "change": -5.12,
+      "price": 720.35,
+      "changesPercentage": -0.71
+    },
+    {
+      "symbol": "ICICIBANK",
+      "name": "ICICI Bank Limited",
+      "change": -8.45,
+      "price": 650.50,
+      "changesPercentage": -1.28
+    },
+    {
+      "symbol": "SBIN",
+      "name": "State Bank of India",
+      "change": -6.50,
+      "price": 430.25,
+      "changesPercentage": -1.49
+    }
+  ]  
   return (
     <div className="bg-black font-[Manrope]">
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -298,20 +372,19 @@ import { FaSignInAlt } from "react-icons/fa"; */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto mr-7">
           {/* <div className="text-5xl font-bold bg-gradient-to-r from-gray-500 via-gray-200 to-gray-500 pb-4 text-transparent bg-clip-text tracking-tight">
            Stock Gainers */}
-           <StockList url={gainersUrl} title="Stock Gainers" />
+           <StockList json={gainerJson} title="Stock Gainers" />
           {/* </div> */}
           {/* <div className="text-5xl font-bold bg-gradient-to-r from-gray-500 via-gray-200 to-gray-500 pb-4 text-transparent bg-clip-text tracking-tight">
             Stock Losers */}
-            <StockList url={losersUrl} title="Stock Losers" />
+            <StockList json={loserJson} title="Stock Losers" />
 
           {/* </div> */}
           </div>
         </div>
         <TestimonialSection />
 
-        <div>
-          <div>Testimonials</div>
-        </div>
+        {/* <Footer /> */}
+
         
       </section>
       

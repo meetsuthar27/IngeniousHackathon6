@@ -2,21 +2,20 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './stockList.css';
 
-const StockList = ({ url, title }) => {
+const StockList = ({ json, title, }) => {
   const [stocks, setStocks] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(url);
-        setStocks(response.data.slice(0, 5)); // Fetch only the first 5 items
+        setStocks(json.slice(0, 5)); // Fetch only the first 5 items
       } catch (error) {
         console.error(`Error fetching ${title} data:`, error);
       }
-    };
+    };  
 
     fetchData();
-  }, [url, title]);
+  }, [json, title]);
 
   return (
     <div className="p-6 rounded-lg shadow-md">

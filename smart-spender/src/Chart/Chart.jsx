@@ -14,8 +14,8 @@ function fetchAPI2(selectedTicker, setMaxPercentageChange, setFiveYearPercentage
     typeof selectedTicker === "string" ? selectedTicker : selectedTicker.ticker;
 
   axios
-    .get(`https://stock-history-three.vercel.app/api/stockHistory?ticker=${ticker}`)
-    // .get(`http://localhost:5000/api/stockHistory?ticker=${ticker}`)
+    // .get(`https://stock-history-three.vercel.app/api/stockHistory?ticker=${ticker}`)
+    .get(`http://localhost:5000/api/stockHistory?ticker=${ticker}`)
     .then((response) => {
       setOneDayPercentageChange(response.data.oneDayPercentageChange);
       setFiveDayPercentageChange(response.data.fiveDayPercentageChange);
