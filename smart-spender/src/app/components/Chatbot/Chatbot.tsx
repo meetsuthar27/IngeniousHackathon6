@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { LuSendHorizontal } from "react-icons/lu";
 
 interface ChatMessage {
   user: string;
@@ -57,7 +58,7 @@ const Chatbot: React.FC = () => {
   return (
     <div className="h-full w-full flex flex-col text-gray-200">
       {/* Chat Messages */}
-      <div className="flex flex-col-reverse flex-grow px-4 py-2 overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-400">
+      <div className="flex flex-col-reverse flex-grow px-4 py-2 overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-700">
         {chatHistory
           .slice()
           .reverse()
@@ -80,21 +81,21 @@ const Chatbot: React.FC = () => {
       </div>
 
       {/* Input Field Fixed at Bottom */}
-      <div className="p-4 border-t border-zinc-700">
+      <div className="">
         <form onSubmit={sendMessage} className="flex">
           <input
             type="text"
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
-            className="flex-grow border text-gray-300 text-sm border-zinc-600 bg-zinc-700 p-2 rounded-l-lg focus:outline-none focus:border-gray-500"
+            className="flex-grow border pl-4 text-gray-300 text-sm border-zinc-600 bg-zinc-700 p-2 rounded-l-full focus:outline-none focus:border-gray-500"
             placeholder="Enter your message"
           />
           <button
             type="submit"
-            className="bg-emerald-800 hover:bg-green-500 text-white px-3 border text-sm border-emerald-700 rounded-r-lg"
+            className="bg-emerald-800 hover:bg-emerald-500 text-white px-3 border text-sm border-emerald-700 rounded-r-full"
             disabled={loading}
           >
-            {loading ? "Loading" : "Send"}
+            {loading ? "Loading" : <LuSendHorizontal />}
           </button>
         </form>
       </div>

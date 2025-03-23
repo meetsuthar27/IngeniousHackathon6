@@ -293,7 +293,7 @@ import { FaSignInAlt } from "react-icons/fa"; */}
 
       {/* <div className="bg-gradient-to-r from-zinc-950 pb-[1px] via-gray-200 to-zinc-950"></div> */}
 
-      <section className="relative flex flex-col md:flex-col items-center justify-between p-20 bg-gradient-to-b from-zinc-950 to-black text-white">
+      <section className="relative font-[Manrope] flex flex-col md:flex-col items-center justify-between p-20 bg-gradient-to-b from-zinc-950 to-black text-white">
         {/* Left Section */}
         <div className="overflow-x-hidden w-full md:overflow-hidden text-center md:text-left">
           <div className="text-5xl font-bold bg-gradient-to-r from-gray-500 via-gray-200 to-gray-500 pb-4 text-transparent bg-clip-text tracking-tight">

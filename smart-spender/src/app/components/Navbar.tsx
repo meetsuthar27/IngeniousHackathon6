@@ -2,18 +2,19 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { RiHome5Line } from "react-icons/ri";
 import { LuChartPie } from "react-icons/lu";
 import { AiOutlineUser } from "react-icons/ai";
-import { FaBell, FaMoon, FaSun } from "react-icons/fa";
-import { LuBell } from "react-icons/lu";
-import { LuSun } from "react-icons/lu";
+import { FaBell } from "react-icons/fa";
+import { LuBell, LuSun } from "react-icons/lu";
 import { BsStars } from "react-icons/bs";
 import { RiInformationLine } from "react-icons/ri";
 import { PiMoonStars } from "react-icons/pi";
 
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
+  const pathname = usePathname(); // Get current route
 
   // Load theme from localStorage
   useEffect(() => {
@@ -37,26 +38,44 @@ const Navbar = () => {
   };
 
   return (
-    <nav
-      className="bg-white fixed 
-                w-full top-0 z-100 left-0 font-[Manrope] dark:bg-black/50 backdrop-blur-3xl border-b-[2px] border-emerald-800/50 shadow-md dark:shadow-black/30 px-6 py-3 flex justify-between items-center"
-    >
+    <nav className="bg-white fixed w-full top-0 z-100 left-0 font-[Manrope] dark:bg-black/50 backdrop-blur-3xl border-b-[2px] border-emerald-800/50 shadow-md dark:shadow-black/30 px-6 py-3 flex justify-between items-center">
       {/* Left: Logo */}
-      <h1 className="text-xl font-semibold tracking-tightest text-zinc-900 dark:text-zinc-200">
-        FinWise
+      <h1 className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-200">
+        FinAura.ai
       </h1>
 
       {/* Middle: Navigation Links */}
       <div className="flex space-x-5 bg-zinc-900/50 px-5 py-2 border border-zinc-800/70 rounded-2xl">
-        <NavButton href="/" icon={RiHome5Line} label="Home" />
-        <NavButton href="/dashboard" icon={LuChartPie} label="Dashboard" />
-        <NavButton href="/profile" icon={AiOutlineUser} label="Profile" />
+        <NavButton
+          href="/"
+          icon={RiHome5Line}
+          label="Home"
+          pathname={pathname}
+        />
+        <NavButton
+          href="/dashboard"
+          icon={LuChartPie}
+          label="Dashboard"
+          pathname={pathname}
+        />
+        <NavButton
+          href="/profile"
+          icon={AiOutlineUser}
+          label="Profile"
+          pathname={pathname}
+        />
         <NavButton
           href="/recommandation"
           icon={BsStars}
           label="Recommandation"
+          pathname={pathname}
         />
-        <NavButton href="/about" icon={RiInformationLine} label="About Us" />
+        <NavButton
+          href="/about"
+          icon={RiInformationLine}
+          label="About Us"
+          pathname={pathname}
+        />
       </div>
 
       {/* Right: Notifications & Dark Mode */}
@@ -89,17 +108,28 @@ const NavButton = ({
   href,
   icon: Icon,
   label,
+  pathname,
 }: {
   href: string;
   icon: React.ElementType;
   label: string;
-}) => (
-  <Link href={href} className="block">
-    <button className="flex items-center cursor-pointer space-x-2 text-white hover:text-emerald-600 px-3 py-1 rounded-lg transition-all">
-      <Icon className="text-lg" />
-      <span className="text-sm">{label}</span>
-    </button>
-  </Link>
-);
+  pathname: string;
+}) => {
+  const isActive = pathname === href;
+
+  return (
+    <Link href={href} className="block">
+      <button
+        className={`flex items-center cursor-pointer space-x-2 px-3 py-1 rounded-lg transition-all
+          ${
+            isActive ? "text-emerald-500" : "text-white hover:text-emerald-600"
+          }`}
+      >
+        <Icon className="text-lg" />
+        <span className="text-sm">{label}</span>
+      </button>
+    </Link>
+  );
+};
 
 export default Navbar;

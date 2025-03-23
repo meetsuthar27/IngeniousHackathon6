@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import { Providers } from "../../provider";
+import Footer from "./components/Footer";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -16,7 +17,10 @@ export default function RootLayout({
             <Navbar />
           </header>
           {children}
-          <footer>{/* <p>Bye goodbye!</p> */}</footer>
+          <footer>
+            {" "}
+            <Footer />
+          </footer>
         </Providers>
       </body>
     </html>

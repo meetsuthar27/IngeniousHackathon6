@@ -111,6 +111,8 @@ function Page() {
       p-4 rounded-2xl shadow-lg flex items-center justify-center 
       sticky top-0 min-h-[600px] max-h-screen"
       >
+        <div className="absolute h-40 w-full bg-gradient-to-b from-zinc-900 via-zinc-900/80 to-zinc-900/0 h-50 top-0 rounded-2xl"></div>
+
         <Chatbot />
       </div>
     </div>
