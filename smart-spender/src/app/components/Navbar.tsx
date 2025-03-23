@@ -11,6 +11,8 @@ import { LuBell, LuSun } from "react-icons/lu";
 import { BsStars } from "react-icons/bs";
 import { RiInformationLine } from "react-icons/ri";
 import { PiMoonStars } from "react-icons/pi";
+import { useRouter } from "next/navigation";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -36,6 +38,10 @@ const Navbar = () => {
     }
     setDarkMode(!darkMode);
   };
+
+  const router = useRouter();
+  const session = useSession();
+  console.log(session);
 
   return (
     <nav className="bg-white fixed w-full top-0 z-100 left-0 font-[Manrope] dark:bg-black/50 backdrop-blur-3xl border-b-[2px] border-emerald-800/50 shadow-md dark:shadow-black/30 px-6 py-3 flex justify-between items-center">
@@ -89,16 +95,27 @@ const Navbar = () => {
         </div>
 
         {/* Dark Mode Toggle */}
-        <button
-          onClick={toggleDarkMode}
-          className="p-2 rounded-full transition-all"
-        >
-          {darkMode ? (
-            <LuSun className="text-yellow-300 text-2xl" />
-          ) : (
-            <PiMoonStars className="text-zinc-700 dark:text-zinc-300 text-2xl" />
-          )}
-        </button>
+        {session?.data?.user && (
+          <button
+            onClick={async () => {
+              await signOut({ callbackUrl: "/" });
+            }}
+            className="text-zinc-300 bg-zinc-800 px-5 py-2 text-sm rounded-full border-[1px] border-zinc-700/50"
+          >
+            Logout
+          </button>
+        )}
+        {!session?.data?.user && (
+          <button
+            onClick={async () => {
+              await signIn("google", { callbackUrl: "/dashboard" });
+              // router.push("/dashboard");
+            }}
+            className="text-zinc-300 bg-zinc-800 px-5 py-2 text-sm rounded-full border-[1px] border-zinc-700/50"
+          >
+            Login
+          </button>
+        )}
       </div>
     </nav>
   );

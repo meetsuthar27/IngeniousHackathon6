@@ -6,8 +6,8 @@ import { FcGoogle } from "react-icons/fc";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { FaSignInAlt } from "react-icons/fa";
 import { PiSignIn } from "react-icons/pi";
-import TestimonialSection from '../app/components/TestimonialSection';
-import Footer from '../app/components/Footer';
+import TestimonialSection from "../app/components/TestimonialSection";
+import Footer from "../app/components/Footer";
 import { useRef, useState, useEffect } from "react";
 import StockList from "./StockList";
 
@@ -18,6 +18,7 @@ import Link from "next/link";
 import ShinyText from "./components/animation/ShinyText";
 import AnimatedContent from "./components/animation/AnimatedContent";
 import Indices from "./components/IndicesHome";
+import { useRouter } from "next/navigation";
 
 const indices = ["Nifty", "Sensex", "Nasdaq", "S&P"];
 
@@ -110,9 +111,9 @@ export default function HeroSection() {
   const [losers, setLosers] = useState([]);
 
   const gainersUrl =
-    'https://financialmodelingprep.com/api/v3/stock_market/gainers?apikey=umepr4cg53OkpHOuVSwTkQXdTTqXixMT';
+    "https://financialmodelingprep.com/api/v3/stock_market/gainers?apikey=umepr4cg53OkpHOuVSwTkQXdTTqXixMT";
   const losersUrl =
-    'https://financialmodelingprep.com/api/v3/stock_market/losers?apikey=umepr4cg53OkpHOuVSwTkQXdTTqXixMT';
+    "https://financialmodelingprep.com/api/v3/stock_market/losers?apikey=umepr4cg53OkpHOuVSwTkQXdTTqXixMT";
 
   // useEffect(() => {
   //   const fetchStockData = async () => {
@@ -149,78 +150,81 @@ export default function HeroSection() {
   const session = useSession();
   const gainerJson = [
     {
-      "symbol": "RELIANCE",
-      "name": "Reliance Industries Limited",
-      "change": 145.75,
-      "price": 2775.50,
-      "changesPercentage": 5.54
+      symbol: "RELIANCE",
+      name: "Reliance Industries Limited",
+      change: 145.75,
+      price: 2775.5,
+      changesPercentage: 5.54,
     },
     {
-      "symbol": "TCS",
-      "name": "Tata Consultancy Services",
-      "change": 98.30,
-      "price": 3875.65,
-      "changesPercentage": 2.59
+      symbol: "TCS",
+      name: "Tata Consultancy Services",
+      change: 98.3,
+      price: 3875.65,
+      changesPercentage: 2.59,
     },
     {
-      "symbol": "INFY",
-      "name": "Infosys Limited",
-      "change": 54.12,
-      "price": 1748.35,
-      "changesPercentage": 3.19
+      symbol: "INFY",
+      name: "Infosys Limited",
+      change: 54.12,
+      price: 1748.35,
+      changesPercentage: 3.19,
     },
     {
-      "symbol": "HDFC",
-      "name": "HDFC Bank Limited",
-      "change": 21.45,
-      "price": 1521.60,
-      "changesPercentage": 1.43
+      symbol: "HDFC",
+      name: "HDFC Bank Limited",
+      change: 21.45,
+      price: 1521.6,
+      changesPercentage: 1.43,
     },
     {
-      "symbol": "KOTAKBANK",
-      "name": "Kotak Mahindra Bank Limited",
-      "change": 28.50,
-      "price": 1812.85,
-      "changesPercentage": 1.60
-    }
-  ]
+      symbol: "KOTAKBANK",
+      name: "Kotak Mahindra Bank Limited",
+      change: 28.5,
+      price: 1812.85,
+      changesPercentage: 1.6,
+    },
+  ];
   const loserJson = [
     {
-      "symbol": "WIPRO",
-      "name": "Wipro Limited",
-      "change": -12.75,
-      "price": 650.50,
-      "changesPercentage": -1.92
+      symbol: "WIPRO",
+      name: "Wipro Limited",
+      change: -12.75,
+      price: 650.5,
+      changesPercentage: -1.92,
     },
     {
-      "symbol": "HCLTECH",
-      "name": "HCL Technologies Limited",
-      "change": -9.30,
-      "price": 1010.25,
-      "changesPercentage": -0.91
+      symbol: "HCLTECH",
+      name: "HCL Technologies Limited",
+      change: -9.3,
+      price: 1010.25,
+      changesPercentage: -0.91,
     },
     {
-      "symbol": "AXISBANK",
-      "name": "Axis Bank Limited",
-      "change": -5.12,
-      "price": 720.35,
-      "changesPercentage": -0.71
+      symbol: "AXISBANK",
+      name: "Axis Bank Limited",
+      change: -5.12,
+      price: 720.35,
+      changesPercentage: -0.71,
     },
     {
-      "symbol": "ICICIBANK",
-      "name": "ICICI Bank Limited",
-      "change": -8.45,
-      "price": 650.50,
-      "changesPercentage": -1.28
+      symbol: "ICICIBANK",
+      name: "ICICI Bank Limited",
+      change: -8.45,
+      price: 650.5,
+      changesPercentage: -1.28,
     },
     {
-      "symbol": "SBIN",
-      "name": "State Bank of India",
-      "change": -6.50,
-      "price": 430.25,
-      "changesPercentage": -1.49
-    }
-  ]  
+      symbol: "SBIN",
+      name: "State Bank of India",
+      change: -6.5,
+      price: 430.25,
+      changesPercentage: -1.49,
+    },
+  ];
+
+  const router = useRouter();
+
   return (
     <div className="bg-black font-[Manrope]">
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -269,23 +273,17 @@ export default function HeroSection() {
             {/* import { FcGoogle } from "react-icons/fc";
 import { FaSignInAlt } from "react-icons/fa"; */}
 
-            <div className="flex  mt-10 space-x-4">
-              {/* <Link href="/"> */}
-              {session?.data?.user && (
-        <button onClick={() => signOut()} className="px-4 py-2 hover:bg-zinc-900/40 text-zinc-200 border border-[1px] hover:border-zinc-700/70 rounded-lg flex items-center space-x-2 bg-emerald-900/70 cursor-pointer border-emerald-800 transition">
-        <PiSignIn className="text-lg" />
-        <span>Sign Out</span>
-      </button>
-      )}
-      {!session?.data?.user && (
-        <button
-        onClick={() => signIn("google")}
-        className="px-4 py-2 hover:bg-zinc-900/40 text-zinc-200 border border-[1px] hover:border-zinc-700/70 rounded-lg flex items-center space-x-2 bg-emerald-900/70 cursor-pointer border-emerald-800 transition"
-      >
-        <FcGoogle className="text-xl  " />
-        <span>Login with Google</span>
-      </button>
-      )}
+            <div className="flex mt-10 space-x-4">
+              {!session?.data?.user && (
+                <button
+                  onClick={async () => {
+                    await signIn("google", { callbackUrl: "/dashboard" });
+                  }}
+                  className="px-4 py-2 hover:bg-zinc-900/40 text-zinc-200 border border-[1px] hover:border-zinc-700/70 rounded-lg flex items-center space-x-2 bg-emerald-900/70 cursor-pointer border-emerald-800 transition"
+                >
+                  <span>Get Started</span>
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -367,27 +365,24 @@ import { FaSignInAlt } from "react-icons/fa"; */}
             <Chart selectedTicker={selectedTicker} />
           </div>
         </div>
-        
+
         <div className="mt-[5rem] overflow-x-hidden w-full md:overflow-hidden text-center md:text-left">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto mr-7">
-          {/* <div className="text-5xl font-bold bg-gradient-to-r from-gray-500 via-gray-200 to-gray-500 pb-4 text-transparent bg-clip-text tracking-tight">
+            {/* <div className="text-5xl font-bold bg-gradient-to-r from-gray-500 via-gray-200 to-gray-500 pb-4 text-transparent bg-clip-text tracking-tight">
            Stock Gainers */}
-           <StockList json={gainerJson} title="Stock Gainers" />
-          {/* </div> */}
-          {/* <div className="text-5xl font-bold bg-gradient-to-r from-gray-500 via-gray-200 to-gray-500 pb-4 text-transparent bg-clip-text tracking-tight">
+            <StockList json={gainerJson} title="Stock Gainers" />
+            {/* </div> */}
+            {/* <div className="text-5xl font-bold bg-gradient-to-r from-gray-500 via-gray-200 to-gray-500 pb-4 text-transparent bg-clip-text tracking-tight">
             Stock Losers */}
             <StockList json={loserJson} title="Stock Losers" />
 
-          {/* </div> */}
+            {/* </div> */}
           </div>
         </div>
         <TestimonialSection />
 
         {/* <Footer /> */}
-
-        
       </section>
-      
     </div>
   );
 }
