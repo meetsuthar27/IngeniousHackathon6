@@ -6,6 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
 import { FaSignInAlt } from "react-icons/fa";
 import { PiSignIn } from "react-icons/pi";
+import TestimonialSection from '../app/components/TestimonialSection';
 import { useRef, useState, useEffect } from "react";
 import StockList from "./StockList";
 
@@ -146,8 +147,8 @@ export default function HeroSection() {
   return (
     <div className="bg-black font-[Manrope]">
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute -right-40 -top-40 w-[600px] h-[600px] bg-green-400/10 dark:bg-green-500/40 rounded-full opacity-60 blur-3xl" />
-        <div className="absolute -left-40 top-1/2 w-[500px] h-[500px] bg-green-400/10 dark:bg-green-500/40 rounded-full opacity-60 blur-3xl" />
+        <div className="absolute -right-40 -top-40 w-[600px] h-[600px] bg-blue-400/40 dark:bg-blue-500/30 rounded-full opacity-60 blur-3xl" />
+        <div className="absolute -left-40 top-1/2 w-[500px] h-[500px] bg-purple-400/40 dark:bg-purple-500/30 rounded-full opacity-60 blur-3xl" />
       </div>
       {/* <div className="absolute left-0 bottom-6 flex justify-center items-center">
         <div className="bg-[var(--acc)]  blur-[10rem] opacity-40 w-[1000px] h-[500px] rounded-full"></div>
@@ -301,6 +302,8 @@ import { FaSignInAlt } from "react-icons/fa"; */}
           {/* </div> */}
           </div>
         </div>
+        <TestimonialSection />
+
         <div>
           <div>Testimonials</div>
         </div>
