@@ -19,8 +19,8 @@ function fetchAPI(selectedTicker, setClosingPrice1d, setClosingPrice5d, setClosi
     typeof selectedTicker === "string" ? selectedTicker : selectedTicker.ticker;
 
   axios
-    // .get(`https://stock-history-romirs-projects.vercel.app/api/stockHistory?ticker=${ticker}`)
-    .get(`http://localhost:5000/api/stockHistory?ticker=${ticker}`)
+  .get(`https://stock-history-three.vercel.app/api/stockHistory?ticker=${ticker}`)
+  // .get(`http://localhost:5000/api/stockHistory?ticker=${ticker}`)
 
     .then((response) => {
       setClosingPrice1d(response.data.closing_price_1d);

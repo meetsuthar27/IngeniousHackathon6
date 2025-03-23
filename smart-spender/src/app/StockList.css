@@ -1,0 +1,55 @@
+.stock-container {
+    background: #0E0E11E6;
+    border: 1px solid hsl(240, 3.7%, 15.9%);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically center content */
+  }
+  
+  .stock-info {
+    display: flex;
+    align-items: center; /* Vertically center */
+  }
+  
+  .stock-symbol {
+    font-weight: 600;
+    color: white;
+    margin-right: 8px;
+    font-size: 14px;
+  }
+  
+  .stock-name {
+    font-size: 14px;
+    color: #A0A0A0;
+  }
+  
+  .stock-value {
+    text-align: right;
+    color: white;
+    font-size: 16px;
+  }
+  
+  .stock-change {
+    font-size: 16px;
+  }
+  
+  .text-green {
+    color: #22C55E;
+  }
+  
+  .text-red {
+    color: #EF4444;
+  }
+  
+
+  @media (min-width: 768px) {
+    .stock-container {
+        display: flex !important;
+        flex-direction: col !important; /* On larger screens, align items in row */
+        justify-content: space-between;
+        align-items: center;
+    }
+  }

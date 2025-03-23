@@ -1,11 +1,14 @@
 "use client";
 import styles from "./Chart.module.css";
 import Chart from "../Chart";
+import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
 import { FaSignInAlt } from "react-icons/fa";
 import { PiSignIn } from "react-icons/pi";
 import { useRef, useState, useEffect } from "react";
+import StockList from "./StockList";
+
 // import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import Link from "next/link";
@@ -14,6 +17,13 @@ import ShinyText from "./components/animation/ShinyText";
 import AnimatedContent from "./components/animation/AnimatedContent";
 
 const indices = ["Nifty", "Sensex", "Nasdaq", "S&P"];
+
+interface Stock {
+  symbol: string;
+  name: string;
+  price: number;
+  changesPercentage: number;
+}
 
 const mockIndices = [
   {
@@ -93,6 +103,33 @@ const stockData = [
 export default function HeroSection() {
   const [selectedButton, setSelectedButton] = useState("Nifty-50 index");
   const [selectedTicker, setSelectedTicker] = useState("^NSEI");
+  const [gainers, setGainers] = useState([]);
+  const [losers, setLosers] = useState([]);
+
+  const gainersUrl =
+    'https://financialmodelingprep.com/api/v3/stock_market/gainers?apikey=umepr4cg53OkpHOuVSwTkQXdTTqXixMT';
+  const losersUrl =
+    'https://financialmodelingprep.com/api/v3/stock_market/losers?apikey=umepr4cg53OkpHOuVSwTkQXdTTqXixMT';
+
+  // useEffect(() => {
+  //   const fetchStockData = async () => {
+  //     try {
+  //       const gainersResponse = await axios.get(
+  //         "https://financialmodelingprep.com/api/v3/stock_market/gainers?apikey=umepr4cg53OkpHOuVSwTkQXdTTqXix"
+  //       );
+  //       const losersResponse = await axios.get(
+  //         "https://financialmodelingprep.com/api/v3/stock_market/losers?apikey=umepr4cg53OkpHOuVSwTkQXdTTqXix"
+  //       );
+
+  //       setGainers(gainersResponse.data.slice(0, 5));
+  //       setLosers(losersResponse.data.slice(0, 5));
+  //     } catch (error) {
+  //       console.error("Error fetching stock data", error);
+  //     }
+  //   };
+
+  //   fetchStockData();
+  // }, []);
 
   const handleButtonClick = (buttonName: string) => {
     const buttonMap: Record<string, string> = {
@@ -139,7 +176,7 @@ import { FaSignInAlt } from "react-icons/fa"; */}
             <div className="flex  mt-10 space-x-4">
               {/* <Link href="/"> */}
               <button
-                onClick={() => signIn()}
+                onClick={() => signIn('google')}
                 className="px-4 py-2 hover:bg-zinc-900/40 text-zinc-200 border border-[1px] hover:border-zinc-700/70 rounded-lg flex items-center space-x-2 bg-emerald-900/70 cursor-pointer border-emerald-800 transition"
               >
                 <FcGoogle className="text-xl  " />
@@ -157,7 +194,7 @@ import { FaSignInAlt } from "react-icons/fa"; */}
       </AnimatedContent>
       <div className="bg-gradient-to-r from-zinc-950 pb-[1px] via-gray-200 to-zinc-950"></div>
 
-      <section className="relative flex flex-col md:flex-row items-center justify-between p-20 bg-gradient-to-b from-zinc-950 to-black text-white">
+      <section className="relative flex flex-col md:flex-col items-center justify-between p-20 bg-gradient-to-b from-zinc-950 to-black text-white">
         {/* Left Section */}
         <div className="overflow-x-hidden w-full md:overflow-hidden text-center md:text-left">
           <div className="text-5xl font-bold bg-gradient-to-r from-gray-500 via-gray-200 to-gray-500 pb-4 text-transparent bg-clip-text tracking-tight">
@@ -231,7 +268,27 @@ import { FaSignInAlt } from "react-icons/fa"; */}
             <Chart selectedTicker={selectedTicker} />
           </div>
         </div>
+        
+        <div className="mt-[5rem] overflow-x-hidden w-full md:overflow-hidden text-center md:text-left">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto mr-7">
+          {/* <div className="text-5xl font-bold bg-gradient-to-r from-gray-500 via-gray-200 to-gray-500 pb-4 text-transparent bg-clip-text tracking-tight">
+           Stock Gainers */}
+           <StockList url={gainersUrl} title="Stock Gainers" />
+          {/* </div> */}
+          {/* <div className="text-5xl font-bold bg-gradient-to-r from-gray-500 via-gray-200 to-gray-500 pb-4 text-transparent bg-clip-text tracking-tight">
+            Stock Losers */}
+            <StockList url={losersUrl} title="Stock Losers" />
+
+          {/* </div> */}
+          </div>
+        </div>
+        <div>
+          <div>Stock Gainers</div>
+          <div>Stock Losers</div>
+        </div>
+        
       </section>
+      
     </div>
   );
 }
