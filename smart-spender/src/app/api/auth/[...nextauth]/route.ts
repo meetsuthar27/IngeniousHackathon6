@@ -1,5 +1,3 @@
-"use server";
-
 import "dotenv/config";
 import NextAuth, { DefaultSession } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
@@ -9,67 +7,87 @@ import type { NextAuthOptions, Session } from "next-auth";
 
 // Extend the session user type to include custom fields
 declare module "next-auth" {
-    interface Session {
-        user: {
-            id: string;
-            email: string;
-            name?: string;
-            mobile?: string;
-            wishlist?: string;
-        } & DefaultSession["user"];
-    }
+  interface Session {
+    user: {
+      id: string;
+      email: string;
+      name?: string;
+      mobile?: string;
+      wishlist?: string[];
+    } & DefaultSession["user"];
+  }
 }
 
-const authOptions: NextAuthOptions = {
-    providers: [
-        GoogleProvider({
-            clientId: "916285265392-dgoaht54qhlmvvu53ijlf03hm51adg3e.apps.googleusercontent.com", // Use fallback to prevent undefined errors
-            clientSecret: "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",
-        }),
-    ],
-    callbacks: {
-        async session({ session }) {
-            if (!session.user?.email) return session;
+export const authOptions: NextAuthOptions = {
+  providers: [
+    GoogleProvider({
+      clientId:
+        "916285265392-dgoaht54qhlmvvu53ijlf03hm51adg3e.apps.googleusercontent.com",
+      clientSecret: "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",
+    }),
+  ],
+  session: {
+    strategy: "jwt", // Store session in a JWT token
+    maxAge: 24 * 60 * 60, // 1 day
+  },
+  secret: "GTgeuwgdauihd",
 
-            try {
-                await connectToDB();
-                const sessionUser = await User.findOne({ email: session.user.email });
+  callbacks: {
+    async session({ session }) {
+      console.log("Session Callback Triggered:", session);
 
-                if (sessionUser) {
-                    session.user.id = sessionUser._id.toString();
-                    session.user.mobile = sessionUser.mobile;
-                    session.user.wishlist = sessionUser.wishlist;
-                }
-            } catch (error) {
-                console.error("Error fetching session user:", error);
-            }
+      if (!session.user?.email) {
+        console.warn("Session user email is missing!");
+        return session;
+      }
 
-            return session;
-        },
-        async signIn({ profile }) {
-            if (!profile?.email) return false;
+      try {
+        await connectToDB();
+        const sessionUser = await User.findOne({ email: session.user.email });
 
-            try {
-                await connectToDB();
+        if (sessionUser) {
+          session.user.id = sessionUser._id.toString();
+          session.user.name = sessionUser.name;
+          session.user.email = sessionUser.email;
+          session.user.wishlist = sessionUser.wishlist || [];
+          console.log("Session Updated:", session);
+        }
+      } catch (error) {
+        console.error("Error fetching session user:", error);
+      }
 
-                const userExists = await User.findOne({ email: profile.email });
-
-                if (!userExists) {
-                    await User.create({
-                        email: profile.email,
-                        name: profile.name,
-                        mobile: "", // Mobile is required but missing from Google auth
-                        wishlist: null,
-                    });
-                }
-
-                return true;
-            } catch (error) {
-                console.error("Error during sign-in:", error);
-                return false;
-            }
-        },
+      return session;
     },
+
+    async signIn({ profile }) {
+      if (!profile?.email) return false;
+
+      try {
+        await connectToDB();
+
+        let userExists = await User.findOne({ email: profile.email });
+        console.log("User Exists:", userExists);
+
+        if (!userExists) {
+          console.log("Creating a new user...");
+
+          userExists = await User.create({
+            email: profile.email,
+            name: profile.name,
+            wishlist: [],
+          });
+
+          console.log("New User Created:", userExists);
+        }
+
+        console.log("Sign-in successful!");
+        return true;
+      } catch (error) {
+        console.error("Error during sign-in:", error);
+        return false;
+      }
+    },
+  },
 };
 
 const handler = NextAuth(authOptions);

@@ -1,108 +1,237 @@
 "use client";
+import styles from "./Chart.module.css";
+import Chart from "../Chart";
+import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
-import Image from "next/image";
+import { FaSignInAlt } from "react-icons/fa";
+import { PiSignIn } from "react-icons/pi";
+import { useRef, useState, useEffect } from "react";
+// import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function Home() {
+import Link from "next/link";
+
+import ShinyText from "./components/animation/ShinyText";
+import AnimatedContent from "./components/animation/AnimatedContent";
+
+const indices = ["Nifty", "Sensex", "Nasdaq", "S&P"];
+
+const mockIndices = [
+  {
+    id: "nifty50",
+    name: "Nifty 50 Index",
+    value: 23350.4,
+    change: 0.69,
+    currency: "INR",
+    logo: "/lovable-uploads/48b524a8-c212-4f59-ab4b-6840433984f1.png",
+  },
+  {
+    id: "sensex",
+    name: "S&P BSE SENSEX Index",
+    value: 76905.51,
+    change: 0.73,
+    currency: "INR",
+    logo: "/lovable-uploads/48b524a8-c212-4f59-ab4b-6840433984f1.png",
+  },
+  {
+    id: "bselargecap",
+    name: "S&P BSE LargeCap Index",
+    value: 8977.75,
+    change: 0.76,
+    currency: "INR",
+    logo: "/lovable-uploads/48b524a8-c212-4f59-ab4b-6840433984f1.png",
+  },
+  {
+    id: "bsemidcap",
+    name: "S&P BSE MidCap Index",
+    value: 41831.57,
+    change: 1.14,
+    currency: "INR",
+    logo: "/lovable-uploads/48b524a8-c212-4f59-ab4b-6840433984f1.png",
+  },
+  {
+    id: "niftybank",
+    name: "Nifty Bank Index",
+    value: 48921.35,
+    change: 0.52,
+    currency: "INR",
+    logo: "/lovable-uploads/48b524a8-c212-4f59-ab4b-6840433984f1.png",
+  },
+  {
+    id: "bsesmallcap",
+    name: "S&P BSE SmallCap",
+    value: 47235.1,
+    change: 1.32,
+    currency: "INR",
+    logo: "/lovable-uploads/48b524a8-c212-4f59-ab4b-6840433984f1.png",
+  },
+  {
+    id: "nasdaq",
+    name: "NASDAQ Composite",
+    value: 16795.55,
+    change: -0.34,
+    currency: "USD",
+    logo: "/lovable-uploads/48b524a8-c212-4f59-ab4b-6840433984f1.png",
+  },
+  {
+    id: "dowjones",
+    name: "Dow Jones Industrial",
+    value: 39175.35,
+    change: 0.12,
+    currency: "USD",
+    logo: "/lovable-uploads/48b524a8-c212-4f59-ab4b-6840433984f1.png",
+  },
+];
+
+// Dummy stock data (Replace with API later)
+const stockData = [
+  { symbol: "AAPL", price: "180.23", change: "+1.5%" },
+  { symbol: "TSLA", price: "250.89", change: "-0.8%" },
+  { symbol: "GOOGL", price: "2800.55", change: "+2.1%" },
+  { symbol: "ETH", price: "3,200", change: "+0.5%" },
+];
+
+export default function HeroSection() {
+  const [selectedButton, setSelectedButton] = useState("Nifty-50 index");
+  const [selectedTicker, setSelectedTicker] = useState("^NSEI");
+
+  const handleButtonClick = (buttonName: string) => {
+    const buttonMap: Record<string, string> = {
+      "Nifty-50 index": "^NSEI",
+      "Nifty-500 index": "^CRSLDX",
+      "S&P BSE SENSEX Index": "^BSESN",
+      "S&P BSE LargeCap Index": "LRGCAP.BO",
+    };
+
+    setSelectedButton(buttonName); // Store the button name
+    setSelectedTicker(buttonMap[buttonName] || buttonName); // Store the ticker symbol
+  };
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div className="bg-black font-[Manrope]">
+      <div className="absolute left-0 bottom-6 flex justify-center items-center">
+        <div className="bg-[var(--acc)]  blur-[10rem] opacity-40 w-[1000px] h-[500px] rounded-full"></div>
+      </div>
+      <div className="absolute right-0 top-0 flex justify-center items-center">
+        <div className="bg-[var(--acc)] blur-[10rem] opacity-40 w-[1000px] h-[200px] rounded-full"></div>
+      </div>
+      <AnimatedContent
+        distance={100}
+        direction="horizontal"
+        reverse={false}
+        config={{ tension: 80, friction: 20 }}
+        initialOpacity={0.2}
+        animateOpacity
+        scale={1.1}
+        threshold={0.2}
+      >
+        <div className="flex  bg-zinc-950/50 backdrop-blur-2xl justify-center h-[800px] items-center ">
+          <div>LOGO</div>
+          <div className="justify-left">
+            <h1 className="text-7xl font-black bg-gradient-to-r from-gray-500 via-gray-200 to-gray-500 inline-block text-transparent bg-clip-text tracking-tightest">
+              FinAura.ai
+            </h1>
 
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
+            <p className="text-4xl mt-2 font-semibold text-gray-600 tracking-tight">
+              A crazy solution for Stock market rookies!
+            </p>
+            {/* import { FcGoogle } from "react-icons/fc";
+import { FaSignInAlt } from "react-icons/fa"; */}
 
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">Hello World.</li>
-          <button onClick={() => signIn()} className="absolute top-4 right-4 p-2 rounded-full bg-foreground text-background dark:bg-background dark:text-foreground">
-        Google Login 
-      </button>
-        </ol>
+            <div className="flex  mt-10 space-x-4">
+              {/* <Link href="/"> */}
+              <button
+                onClick={() => signIn()}
+                className="px-4 py-2 hover:bg-zinc-900/40 text-zinc-200 border border-[1px] hover:border-zinc-700/70 rounded-lg flex items-center space-x-2 bg-emerald-900/70 cursor-pointer border-emerald-800 transition"
+              >
+                <FcGoogle className="text-xl  " />
+                <span>Login with Google</span>
+              </button>
+              {/* </Link> */}
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+              <button className="px-4 py-2 hover:bg-zinc-900/40 text-zinc-200 border border-[1px] hover:border-zinc-700/70 rounded-lg flex items-center space-x-2 bg-emerald-900/70 cursor-pointer border-emerald-800 transition">
+                <PiSignIn className="text-lg" />
+                <span>Sign In</span>
+              </button>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </AnimatedContent>
+      <div className="bg-gradient-to-r from-zinc-950 pb-[1px] via-gray-200 to-zinc-950"></div>
+
+      <section className="relative flex flex-col md:flex-row items-center justify-between p-20 bg-gradient-to-b from-zinc-950 to-black text-white">
+        {/* Left Section */}
+        <div className="overflow-x-hidden w-full md:overflow-hidden text-center md:text-left">
+          <div className="text-5xl font-bold bg-gradient-to-r from-gray-500 via-gray-200 to-gray-500 pb-4 text-transparent bg-clip-text tracking-tight">
+            Market Summary
+          </div>
+          {/* <div className="grid grid-cols-4 gap-8 p-4 bg-transparent rounded-lg overflow-x-auto scrollbar-hide"> */}
+
+          <div className={`${styles.stockHistoryDetail} font-[Manrope]`}>
+            <button
+              className={
+                selectedButton === "Nifty-50 index"
+                  ? `${styles.stockHistoryDetails} ${styles.selectedButton}`
+                  : styles.stockHistoryDetails
+              }
+              onClick={() => handleButtonClick("Nifty-50 index")}
+            >
+              <div className={styles.stockHistoryDetailTitle}>
+                Nifty-50 index
+              </div>
+              <div className={styles.stockHistoryDetailValue}>
+                ₹23350.4 +0.69%
+              </div>
+            </button>
+            <button
+              className={
+                selectedButton === "Nifty-500 index"
+                  ? `${styles.stockHistoryDetails} ${styles.selectedButton}`
+                  : styles.stockHistoryDetails
+              }
+              onClick={() => handleButtonClick("Nifty-500 index")}
+            >
+              <div className={styles.stockHistoryDetailTitle}>
+                Nifty-500 index
+              </div>
+              <div className={styles.stockHistoryDetailValue}>
+                ₹21273.9 +0.97%
+              </div>
+            </button>
+            <button
+              className={
+                selectedButton === "S&P BSE SENSEX Index"
+                  ? `${styles.stockHistoryDetails} ${styles.selectedButton}`
+                  : styles.stockHistoryDetails
+              }
+              onClick={() => handleButtonClick("S&P BSE SENSEX Index")}
+            >
+              <div className={styles.stockHistoryDetailTitle}>
+                S&P BSE SENSEX Index
+              </div>
+              <div className={styles.stockHistoryDetailValue}>
+                ₹76905.51 +0.73%
+              </div>
+            </button>
+            <button
+              className={
+                selectedButton === "S&P BSE LargeCap Index"
+                  ? `${styles.stockHistoryDetails} ${styles.selectedButton}`
+                  : styles.stockHistoryDetails
+              }
+              onClick={() => handleButtonClick("S&P BSE LargeCap Index")}
+            >
+              <div className={styles.stockHistoryDetailTitle}>
+                S&P BSE LargeCap Index
+              </div>
+              <div className={styles.stockHistoryDetailValue}>
+                ₹8977.75 +0.76%
+              </div>
+            </button>
+          </div>
+          <div id="overview" className={styles.chart}>
+            <Chart selectedTicker={selectedTicker} />
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

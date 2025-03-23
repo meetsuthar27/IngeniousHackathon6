@@ -1,18 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { RiHome5Line } from "react-icons/ri";
 import { LuChartPie } from "react-icons/lu";
 import { AiOutlineUser } from "react-icons/ai";
-import { TbInfoCircle } from "react-icons/tb";
-import {
-  FaHome,
-  FaUser,
-  FaBell,
-  FaChartPie,
-  FaMoon,
-  FaSun,
-} from "react-icons/fa";
+import { FaBell, FaMoon, FaSun } from "react-icons/fa";
+import { LuBell } from "react-icons/lu";
+import { LuSun } from "react-icons/lu";
+import { BsStars } from "react-icons/bs";
+import { RiInformationLine } from "react-icons/ri";
+import { PiMoonStars } from "react-icons/pi";
 
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -39,25 +37,34 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white font-[Manrope] dark:bg-zinc-900 backdrop-blur-3xl shadow-md dark:shadow-black/30 px-6 py-3 flex justify-between items-center">
-      {/* Left: Logo & Links */}
-      <div className="flex items-center space-x-6">
-        <h1 className="text-xl font-bold text-zinc-900 dark:text-white">
-          FinWise
-        </h1>
-        <div className="flex space-x-5">
-          <NavItem Icon={RiHome5Line} label="Home" />
-          <NavItem Icon={LuChartPie} label="Dashboard" />
-          <NavItem Icon={AiOutlineUser} label="Profile" />
-        </div>
+    <nav
+      className="bg-white fixed 
+                w-full top-0 z-100 left-0 font-[Manrope] dark:bg-black/50 backdrop-blur-3xl border-b-[2px] border-emerald-800/50 shadow-md dark:shadow-black/30 px-6 py-3 flex justify-between items-center"
+    >
+      {/* Left: Logo */}
+      <h1 className="text-xl font-semibold tracking-tightest text-zinc-900 dark:text-zinc-200">
+        FinWise
+      </h1>
+
+      {/* Middle: Navigation Links */}
+      <div className="flex space-x-5 bg-zinc-900/50 px-5 py-2 border border-zinc-800/70 rounded-2xl">
+        <NavButton href="/" icon={RiHome5Line} label="Home" />
+        <NavButton href="/dashboard" icon={LuChartPie} label="Dashboard" />
+        <NavButton href="/profile" icon={AiOutlineUser} label="Profile" />
+        <NavButton
+          href="/recommandation"
+          icon={BsStars}
+          label="Recommandation"
+        />
+        <NavButton href="/about" icon={RiInformationLine} label="About Us" />
       </div>
 
       {/* Right: Notifications & Dark Mode */}
       <div className="flex items-center space-x-6">
         {/* Notification Bell */}
         <div className="relative cursor-pointer">
-          <FaBell className="text-xl text-zinc-700 dark:text-white" />
-          <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs rounded-full px-1.5 py-0.5">
+          <LuBell className="text-2xl text-zinc-700 dark:text-zinc-300" />
+          <span className="absolute -top-2 -right-2 bg-emerald-600 text-white text-xs rounded-full px-1.5 py-0.5">
             3
           </span>
         </div>
@@ -65,12 +72,12 @@ const Navbar = () => {
         {/* Dark Mode Toggle */}
         <button
           onClick={toggleDarkMode}
-          className="p-2 bg-zinc-200 dark:bg-zinc-800 rounded-full transition-all"
+          className="p-2 rounded-full transition-all"
         >
           {darkMode ? (
-            <FaSun className="text-yellow-300 text-lg" />
+            <LuSun className="text-yellow-300 text-2xl" />
           ) : (
-            <FaMoon className="text-zinc-700 dark:text-white text-lg" />
+            <PiMoonStars className="text-zinc-700 dark:text-zinc-300 text-2xl" />
           )}
         </button>
       </div>
@@ -78,18 +85,21 @@ const Navbar = () => {
   );
 };
 
-// Reusable NavItem Component
-const NavItem = ({
-  Icon,
+const NavButton = ({
+  href,
+  icon: Icon,
   label,
 }: {
-  Icon: React.ElementType;
+  href: string;
+  icon: React.ElementType;
   label: string;
 }) => (
-  <div className="flex items-center space-x-2 text-zinc-700 dark:text-white hover:text-green-500 cursor-pointer">
-    <Icon className="text-lg" />
-    <span className="text-sm">{label}</span>
-  </div>
+  <Link href={href} className="block">
+    <button className="flex items-center cursor-pointer space-x-2 text-white hover:text-emerald-600 px-3 py-1 rounded-lg transition-all">
+      <Icon className="text-lg" />
+      <span className="text-sm">{label}</span>
+    </button>
+  </Link>
 );
 
 export default Navbar;

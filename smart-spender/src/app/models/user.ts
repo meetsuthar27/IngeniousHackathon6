@@ -10,10 +10,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  wishlist: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Wishlist",
-  },
+  wishlist: [
+    {
+      type: String,
+    },
+  ],
 });
 
 // module.exports = mongoose.model("User", userSchema);

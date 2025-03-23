@@ -9,6 +9,7 @@ import TaxCalculator from "../components/Dashboard/TaxCalculator";
 import Indices from "../components/Dashboard/Indices";
 import TopGainer from "../components/Dashboard/TopStocks";
 import TopStocks from "../components/Dashboard/TopStocks";
+import Image from "next/image";
 
 // import { FiSearch } from "react-icons/fi";
 // import Dashboard from "../pages/dashboard";
@@ -17,7 +18,7 @@ function Page() {
   const router = useRouter();
 
   return (
-    <div className="flex font-[Manrope] gap-4 p-6 h-screen bg-zinc-950 text-white overflow-y-auto">
+    <div className="flex font-[Manrope] gap-4 p-6 h-[calc(100vh)] pt-24 bg-zinc-950 text-white overflow-y-auto">
       {/* Profile Section */}
       <div className="flex-col basis-2/3">
         <div className="flex gap-4 mb-4 justify-between">
