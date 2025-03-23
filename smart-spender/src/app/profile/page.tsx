@@ -63,48 +63,51 @@ const Page: React.FC = () => {
     <div className="p-6 flex gap-4 font-[Manrope] bg-gray-100 pt-24 bg-zinc-950 min-h-screen">
       <div className="flex-col basis-1/3">
         {/* User Profile Section */}
-        <div className="bg-zinc-900/70 p-6 mb-4 rounded-lg shadow-md flex items-center space-x-6">
+        <div className="bg-zinc-900/60 p-6 mb-4 rounded-2xl shadow-md flex items-center space-x-6">
           {/* <Image
             src={user.avatar}
             alt="Avatar"
             className="w-20 h-20 rounded-full"
           /> */}
+
           <div>
             <h1 className="text-2xl tracking-tight text-[var(--acc)]/60 font-bold">
               {user.name}
             </h1>
-            <p className="text-gray-600">
-              <span className="font-bold p-2">Account ID</span>
+            <p className="text-zinc-500">
+              <span className="font-bold pr-2">Account ID</span>
               {user.accountId}
             </p>
           </div>
-          <button className="ml-auto bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+          <button className="ml-auto bg-red-500/20 text-red-500 px-5 py-2 rounded-full hover:text-white hover:bg-red-600">
             Logout
           </button>
         </div>
 
         {/* Recent Transactions Section */}
-        <div className="bg-zinc-900/70 p-6 mb-4 rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold mb-4">Recent Transactions</h2>
+        <div className="  bg-zinc-900/60 rounded-2xl p-6 mb-4 shadow-md">
+          <h2 className="text-xl font-semibold text-zinc-300 mb-4">
+            Recent Transactions
+          </h2>
           <div className="space-y-4">
-            <div className="p-4 border rounded-lg">
-              <p className="text-gray-700">
+            <div className="p-4 bg-zinc- rounded-xl">
+              <p className="text-zinc-400">
                 Bought 10 shares of Nippon India Silver ETF
               </p>
-              <p className="text-gray-500 text-sm">2023-10-01</p>
+              <p className="text-zinc-700 text-sm">2023-10-01</p>
             </div>
-            <div className="p-4 border rounded-lg">
-              <p className="text-gray-700">
+            <div className="p-4 bg-zinc- rounded-xl">
+              <p className="text-zinc-400">
                 Sold 5 shares of ICICI Prudential Gold ETF
               </p>
-              <p className="text-gray-500 text-sm">2023-09-28</p>
+              <p className="text-zinc-700 text-sm">2023-09-28</p>
             </div>
           </div>
         </div>
 
         {/* FAQs Section */}
-        <div className="bg-zinc-900/70 p-6 mb-4 rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold mb-4">FAQs</h2>
+        <div className="  bg-zinc-900/60 rounded-2xl p-6 mb-4 shadow-md">
+          <h2 className="text-xl font-semibold mb-4  text-zinc-300">FAQs</h2>
           <div className="space-y-4">
             {faqs.map((faq, index) => (
               <div key={index} className="p-4 border rounded-lg">
@@ -116,8 +119,8 @@ const Page: React.FC = () => {
         </div>
 
         {/* Support Section */}
-        <div className="bg-zinc-900/70 p-6 mb-4 rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold mb-4">Support</h2>
+        <div className="  bg-zinc-900/60 rounded-2xl p-6 mb-4 shadow-md">
+          <h2 className="text-xl font-semibold mb-4  text-zinc-300">Support</h2>
           <p className="text-gray-700">
             If you need further assistance, please contact our support team at{" "}
             <a href="mailto:support@stockwebsite.com" className="text-blue-500">
@@ -129,8 +132,10 @@ const Page: React.FC = () => {
       </div>
       <div className="flex-col basis-2/3">
         {/* Portfolio Section */}
-        <div className="bg-zinc-900/70 p-6 mb-4 rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold mb-4">Portfolio</h2>
+        <div className="  bg-zinc-900/60 rounded-2xl p-6 mb-4 shadow-md">
+          <h2 className="text-xl font-semibold mb-4  text-zinc-300">
+            Portfolio
+          </h2>
           <div className="grid grid-cols-2 gap-4">
             <div className="p-4 bg-gray-50 rounded-lg">
               <p className="text-gray-600">Total Balance</p>
@@ -144,8 +149,10 @@ const Page: React.FC = () => {
         </div>
 
         {/* Wishlist Section */}
-        <div className="bg-zinc-900/70 p-6 rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold mb-4">Wishlist</h2>
+        <div className="  bg-zinc-900/60 rounded-2xl p-6 shadow-md">
+          <h2 className="text-xl font-semibold mb-4  text-zinc-300">
+            Wishlist
+          </h2>
           <div className="space-y-4">
             {wishlist.map((item, index) => (
               <div
