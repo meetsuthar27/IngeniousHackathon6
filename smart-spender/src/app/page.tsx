@@ -12,6 +12,7 @@ import Link from "next/link";
 
 import ShinyText from "./components/animation/ShinyText";
 import AnimatedContent from "./components/animation/AnimatedContent";
+import Indices from "./components/IndicesHome";
 
 const indices = ["Nifty", "Sensex", "Nasdaq", "S&P"];
 
@@ -124,8 +125,21 @@ export default function HeroSection() {
         threshold={0.2}
       >
         <div className="flex  bg-zinc-950/50 backdrop-blur-2xl justify-center h-[800px] items-center ">
-          <div>LOGO</div>
-          <div className="justify-left">
+          <div className="z-105 mr-30 absolute scale-[100%] hover:scale-[110%] rounded-lg top-[50%] left-[8%] shadow-xl transition duration-700 w-80">
+            <img src="/Ccc.svg" alt="Icon" />
+          </div>
+
+          <div className="z-102 absolute scale-[100%] hover:scale-[110%] rounded-lg top-[55%] left-[32%] shadow-xl transition duration-700 w-60">
+            <img src="/Comp2.png" alt="Icon" />
+          </div>
+          <div className="z-101 absolute scale-[100%] hover:scale-[110%] blur-3xl rounded-lg top-[55%] left-[32%] bg-black shadow-xl transition duration-700 w-50 h-30 flex"></div>
+          <div className="z-101 absolute blur-sm rounded-full top-[82%] left-[32%] bg-black  w-60 h-1 flex"></div>
+          <div className="z-100 mr-30 scale-[100%] hover:scale-[110%] rounded-lg top-[50%] left-[35%] shadow-xl transition duration-700 w-140">
+            <img src="/Chart.png" alt="Icon" />
+          </div>
+          <div className="z-101  mr-30 absolute blur-sm rounded-full top-[77%] left-[10%] bg-black  w-140 h-1 flex"></div>
+
+          <div className="z-103 justify-left">
             <h1 className="text-7xl font-black bg-gradient-to-r from-gray-500 via-gray-200 to-gray-500 inline-block text-transparent bg-clip-text tracking-tightest">
               FinAura.ai
             </h1>
@@ -139,7 +153,7 @@ import { FaSignInAlt } from "react-icons/fa"; */}
             <div className="flex  mt-10 space-x-4">
               {/* <Link href="/"> */}
               <button
-                onClick={() => signIn()}
+                onClick={() => signIn("google")}
                 className="px-4 py-2 hover:bg-zinc-900/40 text-zinc-200 border border-[1px] hover:border-zinc-700/70 rounded-lg flex items-center space-x-2 bg-emerald-900/70 cursor-pointer border-emerald-800 transition"
               >
                 <FcGoogle className="text-xl  " />
@@ -155,6 +169,7 @@ import { FaSignInAlt } from "react-icons/fa"; */}
           </div>
         </div>
       </AnimatedContent>
+
       <div className="bg-gradient-to-r from-zinc-950 pb-[1px] via-gray-200 to-zinc-950"></div>
 
       <section className="relative flex flex-col md:flex-row items-center justify-between p-20 bg-gradient-to-b from-zinc-950 to-black text-white">
