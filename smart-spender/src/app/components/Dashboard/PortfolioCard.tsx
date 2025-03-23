@@ -122,8 +122,13 @@ const PortfolioTable = () => {
 
   return (
     <div className="text-white w-full">
-      <div className="pb-2 text-xl w-auto text-zinc-400 font-semibold">
-        Your Portfolio
+      <div className="flex justify-between">
+        <div className="pb-2 text-xl w-auto text-zinc-400 font-semibold">
+          Your Portfolio
+        </div>
+        <button className="text-[0.7em] text-emerald-500 bg-emerald-900 rounded-full px-3 py-1">
+          Add more
+        </button>
       </div>
       <div className="h-[1px] align-center bg-linear-to-r mb-4 from-neutral-700/70 to-zinc-900"></div>
 
@@ -157,7 +162,7 @@ const PortfolioTable = () => {
                   </td>
                   <td
                     className={`p-2 ${
-                      stock.change >= 0 ? "text-green-400" : "text-red-400"
+                      stock.change >= 0 ? "text-emerald-500" : "text-red-400"
                     }`}
                   >
                     {stock.change >= 0 ? `+${stock.change}` : stock.change}
@@ -168,14 +173,14 @@ const PortfolioTable = () => {
                   </td>
                   <td
                     className={`p-2 ${
-                      stock.today >= 0 ? "text-green-400" : "text-red-400"
+                      stock.today >= 0 ? "text-emerald-500" : "text-red-400"
                     }`}
                   >
                     {stock.today >= 0 ? `+${stock.today}` : stock.today}
                   </td>
                   <td
                     className={`p-2 ${
-                      stock.total >= 0 ? "text-green-400" : "text-red-400"
+                      stock.total >= 0 ? "text-emerald-500" : "text-red-400"
                     }`}
                   >
                     {stock.total >= 0 ? `+${stock.total}` : stock.total}

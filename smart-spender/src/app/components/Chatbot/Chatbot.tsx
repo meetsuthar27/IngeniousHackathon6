@@ -57,7 +57,7 @@ const Chatbot: React.FC = () => {
   return (
     <div className="h-full w-full flex flex-col text-gray-200">
       {/* Chat Messages */}
-      <div className="flex flex-col-reverse flex-grow px-4 py-2 overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-700">
+      <div className="flex flex-col-reverse flex-grow px-4 py-2 overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-400">
         {chatHistory
           .slice()
           .reverse()
@@ -69,11 +69,11 @@ const Chatbot: React.FC = () => {
               <div
                 className={`inline-block px-4 py-2 my-1 border shadow-xl ${
                   chat.user === "You"
-                    ? "bg-zinc-800 border-zinc-700 rounded-l-xl rounded-t-xl"
-                    : "bg-emerald-800 border-emerald-700 rounded-r-xl rounded-t-xl"
+                    ? "bg-zinc-300 border-zinc-200 text-zinc-800 rounded-l-xl rounded-t-xl"
+                    : "bg-zinc-800 border-zinc-700/50 rounded-r-xl rounded-t-xl"
                 }`}
               >
-                <h3 className="text-xs">{chat.message}</h3>
+                <h3 className="text-sm">{chat.message}</h3>
               </div>
             </div>
           ))}
@@ -94,7 +94,7 @@ const Chatbot: React.FC = () => {
             className="bg-emerald-800 hover:bg-green-500 text-white px-3 border text-sm border-emerald-700 rounded-r-lg"
             disabled={loading}
           >
-            {loading ? "Sending..." : "Send"}
+            {loading ? "Loading" : "Send"}
           </button>
         </form>
       </div>

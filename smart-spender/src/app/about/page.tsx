@@ -43,7 +43,7 @@ const teamMembers = [
 
 const Page = () => {
   return (
-    <div className="min-h-screen font-[Manrope] bg-zinc-950 text-white px-6 sm:px-25 py-25 space-y-16">
+    <div className="min-h-screen font-[Manrope] pt-40 bg-zinc-950 text-white px-6 sm:px-25 py-25 space-y-16">
       {/* About the Project */}
       <div
         initial={{ opacity: 0, y: 20 }}

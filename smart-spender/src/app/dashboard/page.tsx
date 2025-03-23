@@ -39,8 +39,8 @@ function Page() {
     bgColor = "bg-yellow-500/10";
   } else {
     riskMessage = "Great time! You can go for it.";
-    borderColor = "border-green-500/40";
-    bgColor = "bg-green-500/10";
+    borderColor = "border-emerald-500/40";
+    bgColor = "bg-emerald-500/10";
   }
 
   return (
@@ -91,26 +91,25 @@ function Page() {
           </div>
         </div>
         <div className="flex gap-4 mb-4">
-          <div className="flex flex-col p-4 w-full border-[1px] bg-zinc-900 border-zinc-700/40 text-zinc-500 rounded-xl">
+          <div className="flex mb-4 flex-col p-4 w-full border-[1px] bg-zinc-900 border-zinc-700/40 text-zinc-500 rounded-xl">
             <NewsCard />
           </div>
         </div>
-        <div className="flex gap-4 mb-4">
+        {/* <div className="flex gap-4 mb-4">
           <div className="flex flex-col p-4 basis-1/2 border-[1px] bg-zinc-900 border-zinc-700/40 text-zinc-500 rounded-xl">
             <TopStocks />
           </div>
           <div className="flex flex-col p-4 basis-1/2 border-[1px] bg-zinc-900 border-zinc-700/40 text-zinc-500 rounded-xl">
             <TopGainer />
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Stock Screen */}
       <div
-        className="basis-1/3 border-[1px] border-zinc-700/40 bg-zinc-950 
-      bg-radial-[at_50%_75%] from-[var(--gr1)] via-[var(--gr1)] to-zinc-950 to-90% 
+        className="basis-1/3 border-[1px] border-zinc-700/40 bg-zinc-900 
       p-4 rounded-2xl shadow-lg flex items-center justify-center 
-      sticky top-0 min-h-[500px] max-h-screen"
+      sticky top-0 min-h-[600px] max-h-screen"
       >
         <Chatbot />
       </div>
