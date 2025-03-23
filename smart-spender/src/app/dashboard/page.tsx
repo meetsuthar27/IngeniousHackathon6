@@ -83,9 +83,12 @@ function Page() {
       </div>
 
       {/* Stock Screen */}
-      <div className="basis-1/3 border-[1px] border-zinc-700/40 bg-zinc-950 bg-radial-[at_50%_75%] from-[var(--gr1)] via-var(--gr1)] to-zinc-950 to-90% p-4 rounded-2xl shadow-lg flex items-center justify-center">
-        <Chatbot />
-      </div>
+      <div className="basis-1/3 border-[1px] border-zinc-700/40 bg-zinc-950 
+      bg-radial-[at_50%_75%] from-[var(--gr1)] via-[var(--gr1)] to-zinc-950 to-90% 
+      p-4 rounded-2xl shadow-lg flex items-center justify-center 
+      sticky top-0 min-h-[500px] max-h-screen">
+    <Chatbot />
+  </div>
     </div>
   );
 }

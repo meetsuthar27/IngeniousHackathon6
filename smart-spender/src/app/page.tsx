@@ -145,12 +145,16 @@ export default function HeroSection() {
   };
   return (
     <div className="bg-black font-[Manrope]">
-      <div className="absolute left-0 bottom-6 flex justify-center items-center">
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute -right-40 -top-40 w-[600px] h-[600px] bg-green-400/10 dark:bg-green-500/40 rounded-full opacity-60 blur-3xl" />
+        <div className="absolute -left-40 top-1/2 w-[500px] h-[500px] bg-green-400/10 dark:bg-green-500/40 rounded-full opacity-60 blur-3xl" />
+      </div>
+      {/* <div className="absolute left-0 bottom-6 flex justify-center items-center">
         <div className="bg-[var(--acc)]  blur-[10rem] opacity-40 w-[1000px] h-[500px] rounded-full"></div>
       </div>
       <div className="absolute right-0 top-0 flex justify-center items-center">
         <div className="bg-[var(--acc)] blur-[10rem] opacity-40 w-[1000px] h-[200px] rounded-full"></div>
-      </div>
+      </div> */}
       <AnimatedContent
         distance={100}
         direction="horizontal"
@@ -207,7 +211,7 @@ import { FaSignInAlt } from "react-icons/fa"; */}
         </div>
       </AnimatedContent>
 
-      <div className="bg-gradient-to-r from-zinc-950 pb-[1px] via-gray-200 to-zinc-950"></div>
+      {/* <div className="bg-gradient-to-r from-zinc-950 pb-[1px] via-gray-200 to-zinc-950"></div> */}
 
       <section className="relative flex flex-col md:flex-col items-center justify-between p-20 bg-gradient-to-b from-zinc-950 to-black text-white">
         {/* Left Section */}
@@ -298,8 +302,7 @@ import { FaSignInAlt } from "react-icons/fa"; */}
           </div>
         </div>
         <div>
-          <div>Stock Gainers</div>
-          <div>Stock Losers</div>
+          <div>Testimonials</div>
         </div>
         
       </section>
