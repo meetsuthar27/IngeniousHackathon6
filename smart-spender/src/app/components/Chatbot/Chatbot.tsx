@@ -26,7 +26,7 @@ const Chatbot: React.FC = () => {
       const response = await fetch("http://localhost:8000/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ans:userInput }),
+        body: JSON.stringify({ ans: userInput }),
       });
 
       if (!response.ok) {
@@ -38,12 +38,17 @@ const Chatbot: React.FC = () => {
       // Add Chatbot Response to Chat
       setChatHistory((prev) => [
         ...prev,
-        { user: "Trevor Salamanca", message: data || "No response received." },]);
+        { user: "Trevor Salamanca", message: data || "No response received." },
+      ]);
     } catch (error) {
       console.error("Error:", error);
       setChatHistory((prev) => [
         ...prev,
-        { user: "System", message: "Error sending message. Please try again later." },]);
+        {
+          user: "System",
+          message: "Error sending message. Please try again later.",
+        },
+      ]);
     } finally {
       setLoading(false);
     }
@@ -52,7 +57,7 @@ const Chatbot: React.FC = () => {
   return (
     <div className="h-full w-full flex flex-col text-gray-200">
       {/* Chat Messages */}
-      <div className="flex flex-col-reverse overflow-hidden flex-grow px-4 py-2">
+      <div className="flex flex-col-reverse flex-grow px-4 py-2 overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-700">
         {chatHistory
           .slice()
           .reverse()
