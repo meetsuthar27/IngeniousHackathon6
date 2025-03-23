@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import axios from "axios";
 
 interface ChatMessage {
   user: string;
@@ -10,17 +9,6 @@ const Chatbot: React.FC = () => {
   const [userInput, setUserInput] = useState<string>("");
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([
     { user: "Trevor Salamanca", message: "Hello! How can I assist you today?" },
-    { user: "You", message: "What is the stock price of Apple?" },
-    {
-      user: "Trevor Salamanca",
-      message:
-        "The latest stock price of Apple is $178.50.The latest stock price of Apple is $178.50.The latest stock price of Apple is $178.50.The latest stock price of Apple is $178.50.The latest stock price of Apple is $178.50.The latest stock price of Apple is $178.50.",
-    },
-    { user: "You", message: "Thank you! Can you give investment tips?" },
-    {
-      user: "Trevor Salamanca",
-      message: "Sure! Diversify your investments and think long-term.",
-    },
   ]);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -28,38 +16,41 @@ const Chatbot: React.FC = () => {
     event.preventDefault();
     if (!userInput.trim()) return;
 
+    // Add User Message to Chat
     const newChat: ChatMessage = { user: "You", message: userInput };
-    const updatedChatHistory = [...chatHistory, newChat];
-    setChatHistory(updatedChatHistory);
+    setChatHistory((prev) => [...prev, newChat]);
     setUserInput("");
     setLoading(true);
 
-    // try {
-    //   const response = await axios.post("/api/v1/chat", { userInput });
-    //   setChatHistory([
-    //     ...updatedChatHistory,
-    //     { user: "Trevor Salamanca", message: response.data.response },
-    //   ]);
-    // } catch (error) {
-    //   console.error("Error:", error);
-    //   setChatHistory([
-    //     ...updatedChatHistory,
-    //     {
-    //       user: "System",
-    //       message: "Error sending message. Please try again later.",
-    //     },
-    //   ]);
-    // } finally {
-    //   setLoading(false);
-    // }
+    try {
+      const response = await fetch("http://localhost:8000/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ans:userInput }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log("Response:", data);
+      // Add Chatbot Response to Chat
+      setChatHistory((prev) => [
+        ...prev,
+        { user: "Trevor Salamanca", message: data || "No response received." },]);
+    } catch (error) {
+      console.error("Error:", error);
+      setChatHistory((prev) => [
+        ...prev,
+        { user: "System", message: "Error sending message. Please try again later." },]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="h-full w-full flex flex-col text-gray-200">
-      <div className="pb-2 text-xl w-auto font-semibold text-zinc-400">
-        ChatBot
-      </div>
-      <div className="h-[1px] align-center bg-linear-to-r mb-4 from-neutral-700/70 to-zinc-900"></div>
       {/* Chat Messages */}
       <div className="flex flex-col-reverse overflow-hidden flex-grow px-4 py-2">
         {chatHistory
