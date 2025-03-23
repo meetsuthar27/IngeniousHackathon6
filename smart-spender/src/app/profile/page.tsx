@@ -1,6 +1,9 @@
 // pages/profile.tsx
+"use client";
 import React from "react";
 import Image from "next/image";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Page: React.FC = () => {
   const user = {
@@ -59,6 +62,19 @@ const Page: React.FC = () => {
     },
   ];
 
+  const session = useSession();
+  const router = useRouter();
+
+  const handleLogOut = async () => {
+    await signOut();
+    router.push("/");
+  };
+
+  const handleLogIn = async () => {
+    await signIn("google");
+    router.push("/profile");
+  };
+
   return (
     <div className="p-6 flex gap-4 font-[Manrope] bg-gray-100 pt-24 bg-zinc-950 min-h-screen">
       <div className="flex-col basis-1/3">
@@ -79,9 +95,23 @@ const Page: React.FC = () => {
               {user.accountId}
             </p>
           </div>
-          <button className="ml-auto bg-red-500/20 text-red-500 px-5 py-2 rounded-full hover:text-white hover:bg-red-600">
-            Logout
-          </button>
+
+          {session?.data?.user && (
+            <button
+              className="ml-auto bg-red-500/20 text-red-500 px-5 py-2 rounded-full hover:text-white hover:bg-red-600"
+              onClick={handleLogOut}
+            >
+              Logout
+            </button>
+          )}
+          {!session?.data?.user && (
+            <button
+              className="ml-auto bg-green-500/20 text-red-500 px-5 py-2 rounded-full hover:text-white hover:bg-green-600"
+              onClick={handleLogIn}
+            >
+              Login
+            </button>
+          )}
         </div>
 
         {/* Recent Transactions Section */}
