@@ -2,7 +2,7 @@
 import styles from "./Chart.module.css";
 import Chart from "../Chart";
 import { FcGoogle } from "react-icons/fc";
-import { signIn } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { FaSignInAlt } from "react-icons/fa";
 import { PiSignIn } from "react-icons/pi";
 import { useRef, useState, useEffect } from "react";
@@ -106,6 +106,9 @@ export default function HeroSection() {
     setSelectedButton(buttonName); // Store the button name
     setSelectedTicker(buttonMap[buttonName] || buttonName); // Store the ticker symbol
   };
+
+  const session = useSession();
+
   return (
     <div className="bg-black font-[Manrope]">
       <div className="absolute left-0 bottom-6 flex justify-center items-center">
