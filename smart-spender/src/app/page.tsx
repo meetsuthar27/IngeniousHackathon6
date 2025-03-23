@@ -3,7 +3,7 @@ import styles from "./Chart.module.css";
 import Chart from "../Chart";
 import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
-import { signIn } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { FaSignInAlt } from "react-icons/fa";
 import { PiSignIn } from "react-icons/pi";
 import TestimonialSection from '../app/components/TestimonialSection';
@@ -144,6 +144,9 @@ export default function HeroSection() {
     setSelectedButton(buttonName); // Store the button name
     setSelectedTicker(buttonMap[buttonName] || buttonName); // Store the ticker symbol
   };
+
+  const session = useSession();
+
   return (
     <div className="bg-black font-[Manrope]">
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -194,19 +197,21 @@ import { FaSignInAlt } from "react-icons/fa"; */}
 
             <div className="flex  mt-10 space-x-4">
               {/* <Link href="/"> */}
-              <button
-                onClick={() => signIn('google')}
-                className="px-4 py-2 hover:bg-zinc-900/40 text-zinc-200 border border-[1px] hover:border-zinc-700/70 rounded-lg flex items-center space-x-2 bg-emerald-900/70 cursor-pointer border-emerald-800 transition"
-              >
-                <FcGoogle className="text-xl  " />
-                <span>Login with Google</span>
-              </button>
-              {/* </Link> */}
-
-              <button className="px-4 py-2 hover:bg-zinc-900/40 text-zinc-200 border border-[1px] hover:border-zinc-700/70 rounded-lg flex items-center space-x-2 bg-emerald-900/70 cursor-pointer border-emerald-800 transition">
-                <PiSignIn className="text-lg" />
-                <span>Sign In</span>
-              </button>
+              {session?.data?.user && (
+        <button onClick={() => signOut()} className="px-4 py-2 hover:bg-zinc-900/40 text-zinc-200 border border-[1px] hover:border-zinc-700/70 rounded-lg flex items-center space-x-2 bg-emerald-900/70 cursor-pointer border-emerald-800 transition">
+        <PiSignIn className="text-lg" />
+        <span>Sign Out</span>
+      </button>
+      )}
+      {!session?.data?.user && (
+        <button
+        onClick={() => signIn("google")}
+        className="px-4 py-2 hover:bg-zinc-900/40 text-zinc-200 border border-[1px] hover:border-zinc-700/70 rounded-lg flex items-center space-x-2 bg-emerald-900/70 cursor-pointer border-emerald-800 transition"
+      >
+        <FcGoogle className="text-xl  " />
+        <span>Login with Google</span>
+      </button>
+      )}
             </div>
           </div>
         </div>
