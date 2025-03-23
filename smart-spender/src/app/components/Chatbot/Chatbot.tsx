@@ -34,8 +34,9 @@ const Chatbot: React.FC = () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      const data = await response.json();
+      const data = await response.text();
       console.log("Response:", data);
+
       // Add Chatbot Response to Chat
       setChatHistory((prev) => [
         ...prev,
@@ -45,10 +46,7 @@ const Chatbot: React.FC = () => {
       console.error("Error:", error);
       setChatHistory((prev) => [
         ...prev,
-        {
-          user: "System",
-          message: "Error sending message. Please try again later.",
-        },
+        { user: "System", message: "Error sending message. Please try again later." },
       ]);
     } finally {
       setLoading(false);
@@ -74,7 +72,11 @@ const Chatbot: React.FC = () => {
                     : "bg-zinc-800 border-zinc-700/50 rounded-r-xl rounded-t-xl"
                 }`}
               >
-                <h3 className="text-sm">{chat.message}</h3>
+                {/* Render the message using dangerouslySetInnerHTML to interpret <br> */}
+                <h3
+                  className="text-xs"
+                  dangerouslySetInnerHTML={{ __html: chat.message }}
+                />
               </div>
             </div>
           ))}
